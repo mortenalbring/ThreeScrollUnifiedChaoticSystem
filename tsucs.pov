@@ -76,5 +76,34 @@ camera {
 
 
 
+plane { y, -190
+		pigment { checker rgb <0.1, 0.1, 0.1> rgb <1.0, 1.0, 1.0> scale 5 }
+		finish { reflection 0.2 ambient 0.4 }
+	}
+
+	fog {
+		distance 500
+		color rgb 0.9
+		fog_offset 2
+		fog_alt 5
+		fog_type 2
+	}
+
+sky_sphere {
+		pigment { gradient y
+			color_map {
+				[0 rgb <0.5, 0.6, 1> ]
+				[1 rgb <0, 0, 1> ]
+			}
+		}
+		pigment { wrinkles turbulence clock
+			color_map {
+				[0 rgbt <1,1,1,1>]
+				[0.5 rgbt <0.98, 0.99, 0.99, .6>]
+				[1 rgbt <1, 1, 1, 1>]
+			}
+			scale <.8, .1, .8>
+		}
+	} 
 
 TSUCS(40, 1.833, 55, 0.16,0.65,20,0.00010, 400000*clock, 0.0001, 0.0001, 0.0001, 1)

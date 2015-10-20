@@ -1,4 +1,6 @@
-#macro TSUCS(a, b, c,d,e,f, dT, Iter, x0, y0, z0, R) 
+
+//Draws a Three-Scroll Unified Chaotic System 
+#macro TSUCS(a, b, c, d, e, f, dT, Iter, x0, y0, z0, R) 
 
     #local Count=0;
 	#while (Count<Iter)        
@@ -51,7 +53,7 @@
 	#end
 #end  
 
-#macro TSUCSSingle(a, b, c,d,e,f, dT, Iter, x0, y0, z0, R) 
+#macro TSUCSSingle(a, b, c, d, e, f, dT, Iter, x0, y0, z0, R) 
 
     #local Count=0;
 	#while (Count<Iter)        

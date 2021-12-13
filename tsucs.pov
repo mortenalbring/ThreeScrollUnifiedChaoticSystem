@@ -53,6 +53,46 @@
 	#end
 #end  
 
+
+#macro TSUCSNoTrace(a, b, c, d, e, f, dT, Iter, x0, y0, z0, R) 
+
+    #local Count=0;
+	#while (Count<Iter)        
+	
+		#local x1=x0+dT*(a*(y0-x0) + (d*x0*z0));
+		
+		
+		#local y1=y0+dT*((c * x0) - (x0*z0) + (f*y0));
+		
+        #local z1=z0+dT*((b * z0) + (x0 * y0) - (e * x0 * x0));		
+
+        
+
+            sphere {
+                <x1,y1,z1>, R
+                pigment { 
+                    rgb <(Count/Iter)*0.95,0.8-(Count/Iter)*0.55,0.8-(Count/Iter)*0.85>
+                }
+                finish{
+                    diffuse 0.1
+                    ambient 0.5
+                    specular 0.3
+                    reflection { 
+                        0.3  metallic 
+                    } 
+                }
+            }
+                       
+				
+		#local Count=Count+1;
+		#local x0=x1;
+		#local y0=y1;
+		#local z0=z1;
+	#end
+#end  
+
+
+
 #macro TSUCSSingle(a, b, c, d, e, f, dT, Iter, x0, y0, z0, R) 
 
     #local Count=0;
@@ -78,7 +118,7 @@
         }
         finish{
             diffuse 0.1
-            ambient 0.99
+            ambient 0.55
             specular 0.3
             reflection { 
                 0.9  metallic 
@@ -110,6 +150,7 @@ camera {
 }
 
 
+/*
 
 plane { y, -220
 		pigment { checker rgb <0.1, 0.1, 0.1> rgb <1.0, 1.0, 1.0> scale 5 }
@@ -140,6 +181,12 @@ sky_sphere {
 			scale <.8, .1, .8>
 		}
 	} 
+                                          
+*/                                          
+#declare tclock = 0.5;                                          
+                                          
+TSUCSNoTrace(40, 1.833, 55, 0.16,0.65,20,0.00002, 1000000*tclock, 0.0001, 0.0001, 0.0001, 1)
 
-TSUCS(40, 1.833, 55, 0.16,0.65,20,0.00002, 1000000*clock, 0.0001, 0.0001, 0.0001, 1)
-TSUCSSingle(40, 1.833, 55, 0.16,0.65,20,0.00002, (1000000*clock)+2, 0.0001, 0.0001, 0.0001, 2)
+/*
+TSUCSSingle(40, 1.833, 55, 0.16,0.65,20,0.00002, (1000000*tclock)+2, 0.0001, 0.0001, 0.0001, 2)
+*/
